@@ -3,9 +3,9 @@
 import rospy
 from geometry_msgs.msg import Twist
 
-class DrawSquare:
+class turtlesim:
     def __init__(self):
-        rospy.init_node('draw_spuare', anonymous=True)
+        rospy.init_node('draw', anonymous=True)
         self.velocity_publisher = rospy.Publisher('/turtle1/cmd_vel', Twist, queue_size=10)
         self.rate = rospy.Rate(1)  # 1 Hz (adjust the rate as needed)
 
@@ -33,13 +33,13 @@ class DrawSquare:
         self.velocity_publisher.publish(vel_msg)
 
     def draw_square(self, side_length):
-        for _ in range(4):
+        for _ in range(22):
             self.move_forward(side_length)
             self.turn()
 
 if __name__ == '__main__':
     try:
-        square_drawer = DrawSquare()
+        square_drawer = turtlesim()
         side_length = 2.0  # Length of each side of the square (adjust as needed)
         square_drawer.draw_square(side_length)
     except rospy.ROSInterruptException:
